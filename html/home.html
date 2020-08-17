@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+    <meta lang="en" name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <head>
+        <title>
+            YumNum | Home
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <link href="..\css\mobilestyles.css" media="screen and (max-width:600px)" rel="stylesheet">
+        <link href="..\css\desktopstyles.css" media="screen and (min-width:600px)" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link href="..\css\style.css" rel="stylesheet">
+        <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+         rel = "stylesheet">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+      
+        <script>
+              $( function() {
+    $( "#e-method-list-items" ).sortable();
+    $( "#e-method-list-items" ).disableSelection();
+    $("#e-ingr-list-items").sortable();
+    $("#e-ingr-list-items").disableSelection();
+    $("#ingr-list-items").sortable();
+    $("#ingr-list-items").disableSelection();
+    $( "#method-list-items" ).sortable();
+    $( "#method-list-items" ).disableSelection();
+
+  } );
+  $('.navbar-collapse a').click(function(){
+  $(".navbar-collapse").collapse('hide');
+});
+        </script>
+    </head>
+    <body>
+        <!--navbar-->
+        <nav class="navbar">
+            <div class="navcontent">
+                <a href="#"data-target="#navcollapsed" data-toggle="collapse" style="width: 40px;">
+                    <img id="hamicon" class="icon" src="../images/hamburgericon.png" alt="menu">
+                </a>
+                <a href="home.html" style="width:250px">  
+                    <b class="brand">Yum<span><img src="..\images\logo.png" alt="logo" ></span>Num</b>
+                </a>
+                <button type="button" data-toggle="modal" data-target="#addrecipe" id="add-button" style="width: 120px;">Add Recipe</button>
+                <a id="add-image" href="#" type="button" data-toggle="modal" data-target="#addrecipe"><img class="icon" src="../images/addrecipeicon@2x.png" alt="add"></a>
+            </div>
+            <div id="navcollapsed" class="collapse navbar-collapse">
+               <ul class="navbar-nav">
+                   <li class="nav-item">
+                       <a class="nav-link" href="#content-left" onclick="displayFavorites()">Favorites</a>
+                   </li>
+                   <li class="nav-item">
+                    <a class="nav-link" id="logout-user" href="../index.html">Logout</a>
+                   </li>
+               </ul>
+           </div>
+        </nav>
+          <div class="container maincontainer">
+              <div class="row">
+                  <div class="col-md-2">
+                    <div style="margin-left: 6px;">
+                        <div class="leftscroll"><!--left thumbnail pane-->
+                              <a id="breakfast" href="#content-left"><img class="imgthumbnail" src="../images/breakfastthumb@2x.png"></a>
+                              <a id="lunch" href="#content-left"><img class="imgthumbnail" src="../images/lunchthumb@2x.png"></a>
+                              <a id="snacks" href="#content-left"><img class="imgthumbnail" src="../images/snacksthumb@2x.png"></a>
+                              <a id="dinner" href="#content-left"><img class="imgthumbnail" src="../images/dinnerthumb@2x.png"></a>
+                              <a id="dessert" href="#content-left"><img class="imgthumbnail" src="../images/dessertthumb@2x.png"></a>
+                              <a id="drinks" href="#content-left"><img class="imgthumbnail" src="../images/drinksthumb@2x.png"></a>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="container subcontainer" >
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div id="content-left"><!--recipe list-->
+                                </div>
+                            </div>
+                            <div class="col-md-8 recipe-container"><!--recipe details-->
+                                <div id="content-right">
+                                    <h5 class="bluetext fontopensans">Select a category to view recipes</h5>
+                                </div>
+                                    <div id="content-ingredients">
+            
+                                    </div>
+                                    <div id="content-method">
+                
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+  
+        <script id="recipe-list-template" type="text/x-handlebars-template">
+            <ul> 
+               
+            {{#each recipe}}
+                <li onclick="singleRecipe(this.id)" id="{{name}}"><a href="#content-right">{{name}}</a></li>
+            {{/each}}
+            </ul>
+        </script>
+
+        <script id="recipe-detail-template" type="text/x-handlebars-template">
+            <img id="fav-img" onclick="addToFavorites(this.name)" style="cursor: pointer;width: 50px; margin-bottom: 22px;"title="Add To Favorites" name="{{name}}" src="{{src}}" alt="Favorites">
+            
+                <img onclick="deleteRecipe(this.name)" style="float: right;cursor: pointer;width:40px;position: relative; bottom: 4px;" title="Delete" name="{{name}}" src="../images/deleteicon@2x.png" alt="delete"><span>
+                <a href="#"  type="button" data-toggle="modal" data-target="#editrecipe"><img src="../images/editicon@2x.png" alt="edit" title="edit"onclick="editRecipeFn(this.name)" name="{{name}}" style="float: right;cursor: pointer;width:30px;margin-right:22px"></a>
+           </span>
+                <h4 class="bluetext fontdelius" style="padding-bottom: 14px;">{{name}}</h4>
+            <p><img class="icon" style="margin-right: 14px;margin-bottom: 5px;" src="../images/servesicon@2x.png" alt="Serves"> {{serves}}&nbsp;serves &nbsp;
+            <img class="icon"style="margin-right: 14px;margin-bottom: 5px;width:25px;" src="../images/timericon@2x.png" alt="Duration"> {{duration}}&nbsp;minutes </p>    
+        </script>
+        <script id="ingredient-template" type="text/x-handlebars-template">
+            <p class="fontopensans bold redtext">Ingredients</p>
+            <ul>
+                {{#each ingObj}} 
+                <li class="bullet-points">{{ingr}}</li>
+                {{/each}}
+            </ul>
+        </script>
+        <script id="method-template" type="text/x-handlebars-template">
+            <p class="fontopensans bold redtext">Instructions</p>
+            <ol>
+                {{#each methObj}} 
+                <li>{{inst}}</li>
+                {{/each}}
+            </ol>
+        </script>
+        
+           
+       
+
+        <script type="text/javascript">
+         
+            document.getElementById("drinks").addEventListener( 'click',function(){
+            var recipelist = [];
+            var reciperef = db.collection(uid);
+            var query = reciperef.where("mealtype","==","drinks");
+            query.get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    recipelist.push({name:doc.id});
+                });
+                if (recipelist.length == 0)
+                {
+                    $("#content-right").html("<h5 class=' bluetext fontopensans'>Looks like it's empty. Add more recipes!</h5>");  
+                    $("#content-ingredients").html("");
+                    $("#content-method").html("");
+                }else{
+                    $("#content-right").html("<h5 class=' bluetext fontopensans'>Click on a Recipe name to view it</h5>");  
+                    $("#content-ingredients").html("");
+                    $("#content-method").html("");
+                }
+                var source = $("#recipe-list-template").html();
+                var template = Handlebars.compile(source);
+                var html = template({recipe:recipelist});
+                $("#content-left").html(html);  
+            })
+            .catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+            }
+            );
+            document.getElementById("lunch").addEventListener( 'click',function(){
+            var recipelist = [];
+            var reciperef = db.collection(uid);
+            var query = reciperef.where("mealtype","==","lunch");
+            query.get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    recipelist.push({name:doc.id});
+                });
+                if (recipelist.length == 0)
+                {
+                    $("#content-right").html("<h5 class='emptymsg bluetext fontopensans'>Looks like it's empty. Add more recipes!</h5>");  
+                    $("#content-ingredients").html("");
+                    $("#content-method").html("");
+                }else{
+                    $("#content-right").html("<h5 class='emptymsg bluetext fontopensans'>Click on a Recipe name to view it</h5>");  
+                    $("#content-ingredients").html("");
+                    $("#content-method").html("");
+                }
+                var source = $("#recipe-list-template").html();
+                var template = Handlebars.compile(source);
+                var html = template({recipe:recipelist});
+                $("#content-left").html(html);  
+            })
+            .catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+            }
+            );
+            document.getElementById("breakfast").addEventListener( 'click',function(){
+            var recipelist = [];
+            var reciperef = db.collection(uid);
+            var query = reciperef.where("mealtype","==","breakfast");
+            query.get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    recipelist.push({name:doc.id});
+                });
+                if (recipelist.length == 0)
+                {
+                    $("#content-right").html("<h5 class='emptymsg bluetext fontopensans'>Looks like it's empty. Add more recipes!</h5>");  
+                    $("#content-ingredients").html("");
+                    $("#content-method").html("");
+                }else{
+                    $("#content-right").html("<h5 class='emptymsg bluetext fontopensans'>Click on a Recipe name to view it</h5>");  
+                    $("#content-ingredients").html("");
+                    $("#content-method").html("");
+                }
+                var source = $("#recipe-list-template").html();
+                var template = Handlebars.compile(source);
+                var html = template({recipe:recipelist});
+                $("#content-left").html(html);  
+            })
+            .catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+            }
+            );
+            document.getElementById("dinner").addEventListener( 'click',function(){
+            var recipelist = [];
+            var reciperef = db.collection(uid);
+            var query = reciperef.where("mealtype","==","dinner");
+            query.get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    recipelist.push({name:doc.id});
+                });
+                if (recipelist.length == 0)
+                {
+                    $("#content-right").html("<h5 class='emptymsg bluetext fontopensans'>Looks like it's empty. Add more recipes!</h5>");  
+                    $("#content-ingredients").html("");
+                    $("#content-method").html("");
+                }else{
+                    $("#content-right").html("<h5 class='emptymsg bluetext fontopensans'>Click on a Recipe name to view it</h5>");  
+                    $("#content-ingredients").html("");
+                    $("#content-method").html("");
+                }
+                var source = $("#recipe-list-template").html();
+                var template = Handlebars.compile(source);
+                var html = template({recipe:recipelist});
+                $("#content-left").html(html);  
+            })
+            .catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+            }
+            );
+            document.getElementById("snacks").addEventListener( 'click',function(){
+            var recipelist = [];
+            var reciperef = db.collection(uid);
+            var query = reciperef.where("mealtype","==","snacks");
+            query.get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    recipelist.push({name:doc.id});
+                });
+                if (recipelist.length == 0)
+                {
+                    $("#content-right").html("<h5 class='emptymsg bluetext fontopensans'>Looks like it's empty. Add more recipes!</h5>");  
+                    $("#content-ingredients").html("");
+                    $("#content-method").html("");
+                }else{
+                    $("#content-right").html("<h5 class='emptymsg bluetext fontopensans'>Click on a Recipe name to view it</h5>");  
+                    $("#content-ingredients").html("");
+                    $("#content-method").html("");
+                }
+                var source = $("#recipe-list-template").html();
+                var template = Handlebars.compile(source);
+                var html = template({recipe:recipelist});
+                $("#content-left").html(html);  
+            })
+            .catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+            }
+            );
+            document.getElementById("dessert").addEventListener( 'click',function(){
+            var recipelist = [];
+            var reciperef = db.collection(uid);
+            var query = reciperef.where("mealtype","==","dessert");
+            query.get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    recipelist.push({name:doc.id});
+                });
+                if (recipelist.length == 0)
+                {
+                    $("#content-right").html("<h5 class='emptymsg bluetext fontopensans'>Looks like it's empty. Add more recipes!</h5>");  
+                    $("#content-ingredients").html("");
+                    $("#content-method").html("");
+                }else{
+                    $("#content-right").html("<h5 class='emptymsg bluetext fontopensans'>Click on a Recipe name to view it</h5>");  
+                    $("#content-ingredients").html("");
+                    $("#content-method").html("");
+                }
+                var source = $("#recipe-list-template").html();
+                var template = Handlebars.compile(source);
+                var html = template({recipe:recipelist});
+                $("#content-left").html(html);  
+            })
+            .catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+            }
+            );
+        </script>
+        <!--Add recipe modal-->
+
+        <div id="addrecipe" class="modal fade" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content" role="document">
+                    <div class="modal-header">
+                        <h4 class="modal-title bluetext fontdelius bold">Add Recipe
+                          </h4>
+                          <button id="addmodalclose" type="button" class="close" data-dismiss="modal" style="width:50px;">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addrecipeform">
+                            <input class="form-control" placeholder="Recipe Name" type="text" id="r-name" required>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input class="form-control " placeholder="Serves" type="number"id="r-serves" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control " placeholder="Duration(minutes)" type="number" id="r-time" required>
+                                </div>
+                            </div>    
+                            <p class="bluetext fontopensans">Select Meal Type</p> 
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="meal" value="breakfast">
+                                        <label class="form-check-label">Breakfast</label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="meal" value="lunch">
+                                        <label class="form-check-label">Lunch</label>
+                                      </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                <input type="radio" class="form-check-input" name="meal" value="snacks">
+                                <label class="form-check-label">Snacks</label>
+                              </div>
+                              <div class="form-check">
+                                <input type="radio" class="form-check-input" name="meal" value="dinner">
+                                <label class="form-check-label">Dinner</label>
+                              </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="meal" value="dessert">
+                                        <label class="form-check-label">Dessert</label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="meal" value="drinks">
+                                        <label class="form-check-label">Drinks</label>
+                                      </div>
+                                </div>
+                            </div>                     
+                            <p style="margin-top: 20px;"class="bluetext fontopensans">Add Ingredients</p> 
+                            <div class="liststyle">
+                                <ul id="ingr-list-items">
+                                    <!--displays ingredient list items-->
+                                </ul>
+                                </div>
+                            <div class="searchbox" id="add-ingr">
+                                <input class="form-control"style="width:70%;" placeholder="Qty Unit Ingredient" type="text" id="r-ingr">
+                                <a onclick=newIngredient() style="width:40px; cursor: pointer;" ><img style="margin-top: 16px;margin-left:16px;width: 26px;" src="../images/addrecipeicon@2x.png" alt="add"></a>
+                            </div>
+                                <p style="margin-top: 20px;" class="bluetext fontopensans">Add Method</p> 
+                                <div class="methodstyle">
+                                    <ul id="method-list-items">
+                                     <!--displays method list items-->
+                                    </ul>
+                                    </div>
+                                <div class="searchbox" id="add-method">
+                                    <textarea class="form-control" rows="4"style="width:78%;" placeholder="Add a new step.." id="r-method"></textarea>
+                                    <a onclick=newMethod() style="width:40px; cursor: pointer;" ><img style="margin-top: 16px;margin-left:16px;width: 26px;" src="../images/addrecipeicon@2x.png" alt="add"></a>
+                                </div>
+                            <button type="submit" id="addrecipe-button">Add To Cookbook</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>  
+
+        <!--edit recipe modal-->
+        <div id="editrecipe" class="modal fade" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered ">
+                <div class="modal-content" role="document">
+                    <div class="modal-header">
+                        <h4 class="modal-title bluetext fontdelius bold">Edit Recipe
+                          </h4>
+                          <button id="editmodalclose" type="button" class="close" data-dismiss="modal" style="width:50px;">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editrecipeform">
+                            <h5 class="redtext bold fontopensans" id="e-name"></h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input class="form-control " placeholder="Serves" type="number"id="e-serves" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input class="form-control " placeholder="Duration(minutes)" type="number" id="e-time" required>
+                                </div>
+                            </div>    
+                            <p class="bluetext fontopensans">Select Meal Type</p> 
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="e-meal" value="breakfast">
+                                        <label class="form-check-label">Breakfast</label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="e-meal" value="lunch">
+                                        <label class="form-check-label">Lunch</label>
+                                      </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                <input type="radio" class="form-check-input" name="e-meal" value="snacks">
+                                <label class="form-check-label">Snacks</label>
+                              </div>
+                              <div class="form-check">
+                                <input type="radio" class="form-check-input" name="e-meal" value="dinner">
+                                <label class="form-check-label">Dinner</label>
+                              </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="e-meal" value="dessert">
+                                        <label class="form-check-label">Dessert</label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input type="radio" class="form-check-input" name="e-meal" value="drinks">
+                                        <label class="form-check-label">Drinks</label>
+                                      </div>
+                                </div>
+                            </div>                     
+                            <p style="margin-top: 20px;"class="bluetext fontopensans">Edit Ingredients</p> 
+                            <div class="e-liststyle">
+                                <ul id="e-ingr-list-items">
+                                    <!--displays ingredient list items-->
+                                </ul>
+                                </div>
+                            <div class="searchbox" id="e-add-ingr">
+                                <input class="form-control"style="width:70%;" placeholder="Qty Unit Ingredient" type="text" id="e-ingr">
+                                <a id="a-new-ingr" style="width:40px; cursor: pointer;" ><img style="margin-top: 16px;margin-left:16px;width: 26px;" src="../images/addrecipeicon@2x.png" alt="add"></a>
+                            </div>
+                                <p style="margin-top: 20px;" class="bluetext fontopensans">Edit Method</p> 
+                                <div class="e-methodstyle">
+                                    <ul id="e-method-list-items">
+                                     <!--displays method list items-->
+                                    </ul>
+                                    </div>
+                                <div class="searchbox" id="e-add-method">
+                                    <textarea class="form-control" rows="4"style="width:78%;" placeholder="Add a new step.." id="e-method"></textarea>
+                                    <a id="a-new-method" style="width:40px; cursor: pointer;" ><img style="margin-top: 16px;margin-left:16px;width: 26px;" src="../images/addrecipeicon@2x.png" alt="add"></a>
+                                </div>
+                            <button type="submit" id="editrecipe-button">Update Recipe</button>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+        <!-- Add Firebase products that you want to use -->
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-firestore.js"></script>
+        <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyCb4yYHH368_mhaqx-dzUIBxuoBqu59Peg",
+            authDomain: "yumnum-ecfc1.firebaseapp.com",
+            databaseURL: "https://yumnum-ecfc1.firebaseio.com",
+            projectId: "yumnum-ecfc1",
+            storageBucket: "yumnum-ecfc1.appspot.com",
+            messagingSenderId: "203938753544",
+            appId: "1:203938753544:web:2c1a6e6380da40414df5bd",
+            measurementId: "G-38WXHXG64G"
+            };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        </script>
+        <script src="../js/auth.js"></script>
+        <script src="../js/home.js"></script>
+        <script src="../js/firestore.js"></script>
+    </body>
+</html>

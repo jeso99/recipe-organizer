@@ -1,0 +1,33 @@
+.leftscroll{
+    padding: 20px;
+    height: 520px;
+    width: 200px;
+    overflow: auto;
+}
+.leftscroll a{
+    display: block;
+    width: 140px;
+}
+img.imgthumbnail{
+    width: 100%;
+    padding: 14px 0px;
+}
+#loginbox{
+    border-left: 1px solid #a6a6a6;
+    border-top: none;
+}
+#add-button{
+    position: absolute;
+    right: 1%;
+}
+#add-image{
+    display: none;
+}
+.maincontainer{
+    position: relative;
+    right: 6%;
+}
+.subcontainer{
+    position: relative;
+    left:7%;
+}

@@ -1,0 +1,20 @@
+.leftscroll a{
+    max-width:50%;
+    float: left;
+    padding: 14px 10px;
+}
+img.imgthumbnail{
+    width: 90%;
+}
+#loginbox{
+    border-top: 1px solid #a6a6a6;
+    border-left:none;
+}
+#add-button{
+    display: none;
+}
+#add-image{
+    display:visible;
+    position: absolute;
+    right: 1%;
+}
